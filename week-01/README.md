@@ -1,112 +1,89 @@
-# Week 1 — Cloud Foundations + IAM (Users, Groups & Policies)
+# Week 1 - Cloud Foundations + IAM
 
-> Sessions S1–S2 · Jul 4–5, 2026 · SAA-C03 Domain 1 — Design Secure Architectures (30%)
-> Deep dive: study-repo modules `01-AWS-Fundamentals`, `02-IAM`
+AWS Zero To Hero - CloudAdhar x TrainWithShubham  
+Sessions: Jul 4-5, 2026  
+Exam focus: SAA-C03 Domain 1 - Design Secure Architectures  
+Main pillar: Security
 
-Welcome to the challenge. This week is your foundation. You'll set up an AWS account safely, get a feel for how the cloud is structured, and learn to control who can do what with IAM. Everything you build over the next nine weeks sits on top of this.
+This week is about basics. Before EC2, S3, VPC, or databases, first get the AWS
+account and IAM right.
 
-## Overview
+## Start Here
 
-By the end of the week you should be able to:
+Do not finish everything in one sitting. Go step by step.
 
-- Explain the AWS Global Infrastructure (Regions, Availability Zones, edge locations) and the Shared Responsibility Model.
-- Set up an AWS account securely — lock down the root user, turn on MFA, and add a billing alarm so a surprise bill can't happen.
-- Create IAM users, groups, and policies, and apply least privilege using JSON policies and permission boundaries.
+- First understand these words: Region, Availability Zone, root user, IAM,
+  policy.
+- Then do the account security lab.
+- Then create IAM users and groups.
+- If the optional GitHub OIDC task feels hard, skip it for now.
+- Submit whatever you complete with honest notes. Do not stay silent.
 
-## Theory & Concepts
+## What You Should Know
 
-**S1 — Cloud Foundations**
-- **Global Infrastructure.** Regions are geographic areas; each contains isolated Availability Zones; edge locations serve content close to users. Almost every question about resilience or latency starts here.
-- **Shared Responsibility Model.** AWS secures the cloud (hardware, global infra); you secure what's *in* the cloud (data, IAM, configuration). The exam often asks "who is responsible for X?"
-- **Account and root user.** The root user can do everything, so you should use it almost never. Leaving it unprotected is the single most common real-world mistake.
+By the end of this week:
 
-**S2 — IAM Users, Groups & Policies**
-- **Users vs groups.** Attach policies to groups and put users in the groups. It scales cleanly and it's the recommended practice.
-- **IAM policies (JSON).** Built from `Effect`, `Action`, `Resource`, and `Condition`. Reading a policy and predicting "allow or deny?" is a guaranteed exam skill.
-- **Least privilege.** Grant only the permissions actually needed. This is the core idea of Domain 1.
-- **Permission boundaries.** A maximum-permission ceiling for a user or role. People confuse these with SCPs (which come in Week 2), so learn the difference now.
+- You know what Regions, Availability Zones, and Edge Locations mean.
+- You know what AWS secures and what you secure.
+- Your root user has MFA.
+- You have a billing or budget alert.
+- You know IAM users, groups, roles, and policies at a basic level.
+- You practiced least privilege using read-only access.
+- You can read a simple IAM JSON policy.
 
-## Hands-on Labs
+## 5-Day Practice Sequence
 
-Do these in your own AWS account, use the Free Tier, and run the cleanup step when you're done.
+| Seq | When | Practice | File |
+|---:|---|---|---|
+| 01 | Day 1 | Learn cloud foundations | [01-cloud-foundations.md](./01-cloud-foundations.md) |
+| 02 | Day 2 | Learn IAM basics | [02-iam-basics.md](./02-iam-basics.md) |
+| 03 | Day 3 | Secure AWS account and billing | [03-account-security-lab.md](./03-account-security-lab.md) |
+| 04 | Day 4 | Practice IAM users, groups, and policies | [04-iam-hands-on-lab.md](./04-iam-hands-on-lab.md) |
+| 05 | Day 5 | Try optional GitHub OIDC challenge | [05-github-oidc-challenge.md](./05-github-oidc-challenge.md) |
+| 06 | End of week | Clean up test AWS resources | [06-cleanup.md](./06-cleanup.md) |
+| 07 | End of week | Submit your weekly work | [07-submission-format.md](./07-submission-format.md) |
+| 08 | End of week | Post learning update on LinkedIn | [08-linkedin-post.md](./08-linkedin-post.md) |
+| 09 | Before next week | Revise for quiz | [09-quiz-prep.md](./09-quiz-prep.md) |
 
-**Lab 1 — Secure your account (root hardening + billing alarm)**
+## Minimum Submission For Week 1
 
-The goal is an account you can safely build in for ten weeks.
+Submit at least:
 
-1. Create or log into your AWS account.
-2. Enable MFA on the root user (IAM → Security credentials → MFA).
-3. In Billing → Billing preferences, turn on Free Tier and billing alerts.
-4. In CloudWatch → Alarms, create a billing alarm (for example, alert if estimated charges go over $5) and subscribe your email through SNS. This is also your carry-forward cost thread — see below.
-5. Stop using root. Create an IAM admin user for everyday work and sign in as that from now on.
+- Root MFA proof
+- Billing or budget alert proof
+- One IAM group and one IAM user proof
+- One short note on what you understood and where you got stuck
+- LinkedIn post link
 
-Deliverable: screenshots of root MFA enabled and the billing alarm in an OK/ALARM state.
+## Submission
 
-**Lab 2 — IAM users, groups, and least-privilege policies**
+- Use this structure: [07-submission-format.md](./07-submission-format.md)
+- Clean up test resources: [06-cleanup.md](./06-cleanup.md)
+- Post daily progress: [08-linkedin-post.md](./08-linkedin-post.md)
+- Prepare for next week quiz: [09-quiz-prep.md](./09-quiz-prep.md)
 
-The goal is to see policy evaluation with your own eyes.
+## Exam + Pillar Mapping
 
-1. Create a group `Developers` and attach the managed policy `AmazonS3ReadOnlyAccess`.
-2. Create an IAM user `dev-01`, add it to `Developers`, and generate console/CLI access.
-3. As `dev-01`, confirm you can list S3 buckets but cannot delete one (you should get Access Denied).
-4. Write a small custom JSON policy that allows `s3:GetObject` on one specific bucket ARN only, attach it, and test.
-5. Optional: attach a permission boundary to `dev-01` and watch how it caps the effective permissions.
+| Topic | Exam Mapping | Pillar | Best Practice |
+|---|---|---|---|
+| Root MFA | Domain 1 | Security | Protect root user |
+| Billing alerts | Domain 4 | Cost Optimization | Monitor cost early |
+| Shared responsibility | Domain 1 | Security | Know AWS vs customer duties |
+| IAM groups | Domain 1 | Security | Manage permissions centrally |
+| IAM roles | Domain 1 | Security | Prefer temporary access |
+| IAM policies | Domain 1 | Security | Use least privilege |
+| GitHub OIDC | Domain 1 | Security | Avoid long-lived access keys |
 
-Deliverable: the custom policy JSON in your repo, plus a screenshot of the denied and allowed actions.
+## Rules
 
-**Cleanup**
-- Delete the test users, groups, and custom policies (keep your admin user and the billing alarm).
-- Nothing paid is created this week, but leave the billing alarm on for all ten weeks.
+- Do not share access keys, secret keys, MFA QR codes, payment details, or
+  sensitive billing screenshots.
+- Use your own AWS account carefully.
+- Prefer Free Tier resources and delete test resources after labs.
+- Share progress publicly, but hide sensitive information.
 
-## Carry-Forward
-
-- **Cost — billing alarm.** You set it in Lab 1. That's the start of your Domain 4 (cost) thread. You'll watch cost implications each week, and in Week 10 you'll add Budgets, Cost Explorer, and Compute Optimizer.
-- **Governance — CloudTrail.** Turn on a CloudTrail trail now so every API call in your account is logged. You'll lean on these logs for auditing and troubleshooting throughout, and revisit governance and observability properly in Week 10.
-
-## Exam Domain Mapping
-
-Domain 1 — Design Secure Architectures (30% of the exam). IAM is the single most-tested topic, so it's worth over-learning early.
-
-<details><summary>Q1. Where should you attach IAM policies for easiest management at scale?</summary>
-
-To IAM groups, then place users in the groups. Attaching directly to individual users doesn't scale.
-</details>
-
-<details><summary>Q2. A permission boundary grants <code>s3:*</code> but the user's policy grants only <code>s3:GetObject</code>. What can the user do?</summary>
-
-Only `s3:GetObject`. A permission boundary sets the maximum possible permissions; the effective permission is the intersection of the boundary and the identity policy.
-</details>
-
-<details><summary>Q3. Under the Shared Responsibility Model, who patches the guest OS on an EC2 instance?</summary>
-
-You do. AWS is responsible for the hypervisor and host; the customer manages the guest OS, patches, and applications.
-</details>
-
-## Learn in Public
-
-Share a short post this week. Adapt this for LinkedIn, X, or GitHub:
-
-```text
-Week 1 of #10WeeksOfAWS done.
-
-This week I set up my AWS foundation:
-- Secured the account: root MFA and a billing alarm so no surprise bills
-- Created IAM users, groups, and least-privilege JSON policies
-- Got my head around the Shared Responsibility Model and the Global Infrastructure
-
-The thing that finally clicked: [write one thing you actually understood this week].
-
-Next up: IAM roles, STS, and Organizations.
-
-#10WeeksOfAWS #CloudAdhar #TrainWithShubham
-@TrainWithShubham @cloudadhar
-```
-
-Attach a screenshot of your billing alarm or IAM setup, and tag us so we can reshare.
-
----
 <div align="center">
 
-[Home](../README.md) · [Week 2 →](../week-02/)
+[Home](../README.md) | [Week 2](../week-02/)
 
 </div>
