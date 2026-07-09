@@ -55,46 +55,58 @@
 5. Create an alert for estimated charges (e.g. $5).
 6. Stop using root user for daily activities.
 
+**Before creating an AWS Billing Alarm, make sure these prerequisites are completed:**
+
+1. Enable Billing Alerts
+   - Sign in as the AWS account root user, or an IAM identity with the required billing permissions.
+   - Open the Billing and Cost Management console.
+   - Go to Billing Preferences.
+   - Enable Receive CloudWatch billing alerts.
+   - Save the changes.
+
+2. Use the North Virginia (us-east-1) AWS Region
+   - Billing metrics are available only in US East (N. Virginia) (`us-east-1`).
+   - Create the CloudWatch alarm in this region.
+
 **Deliverables:**
 
 ### Root MFA enabled
-![image](./screenshots/root-mfa.png)
+![Root MFA enabled](./Root%20MFA%20enabled.png)
 
 ### Billing Alert
-![image](./screenshots/billing-alert.png)
+![Billing Alert](./Billing%20Alert.png)
 
 ### Budget Alerts
-![image](./screenshots/budget.png)
+![Budget Alerts](./Budget%20Alerts.png)
 
-Show Image
-
-Where I Got Stuck:
-
-Show Image
+### Where I Got Stuck
+![CloudWatch billing alerts disabled](./cloudwatch-billing-alerts-disabled.png)
 
 Issue: Initially, I couldn't create the Billing Alarm because CloudWatch billing alerts were not enabled and billing metrics were unavailable.
 
 Resolution: I enabled "Receive CloudWatch billing alerts" in Billing Preferences, selected the US East (N. Virginia) (us-east-1) region, and then successfully created the Billing Alarm.
 
-Why should the AWS root user not be used daily?
+![CloudWatch billing alerts enabled](./cloudwatch-billing-alerts-enabled.png)
+
+### Why should the AWS root user not be used daily?
 
 
-The root user has full access to the entire AWS account.
-Using it every day is risky because one mistake can affect all resources.
-If the root account is hacked, the attacker gets complete control of the AWS account.
-For daily work, we should use IAM users or IAM roles with only the required permissions.
-The root user should be used only for account setup and a few critical administrative tasks.
-MFA should always be enabled on the root account for extra security.
+- The root user has full access to the entire AWS account.
+- Using it every day is risky because one mistake can affect all resources.
+- If the root account is hacked, the attacker gets complete control of the AWS account.
+- For daily work, we should use IAM users or IAM roles with only the required permissions.
+- The root user should be used only for account setup and a few critical administrative tasks.
+- MFA should always be enabled on the root account for extra security.
 
 
-Why billing should be monitored from Day 1?
+### Why billing should be monitored from Day 1?
 
 
-Helps avoid unexpected charges.
-Keeps AWS spending under control.
-Sends alerts when the budget limit is reached.
-Helps use AWS resources wisely.
-Makes it easier to stay within the Free Tier.
+- Helps avoid unexpected charges.
+- Keeps AWS spending under control.
+- Sends alerts when the budget limit is reached.
+- Helps use AWS resources wisely.
+- Makes it easier to stay within the Free Tier.
 
 ---
 
@@ -115,16 +127,16 @@ Added to: S3ReadOnlyGroup
 **Deliverables:**
 
 ### Group created & Policy Attached
-![image](./screenshots/iam-group-s3read-policy.png)
+![Group created and policy attached](./Group%20created%20%26%20Policy%20Attached.png)
 
 ### User Added to group
-![image](./screenshots/iam-learner-s3user-add-group.png)
+![User added to group](./User%20Added%20to%20group.png)
 
 ### Allowed S3 view action
-![image](./screenshots/s3-view-action.png)
+![Allowed S3 view action](./Allowed%20S3%20view%20action.png)
 
 ### Denied Action
-![image](./screenshots/s3-denied-action.png)
+![Denied action](./Denied%20Action.png)
 
 ---
 
@@ -145,16 +157,10 @@ Added to: EC2ReadOnlyGroup
 **Deliverables:**
 
 ### EC2ReadOnlyGroup & Policy attached
-![image](./screenshots/iam-group-ec2read-policy.png)
+![EC2ReadOnlyGroup and policy attached](./EC2ReadOnlyGroup%20%26%20Policy%20attached.png)
 
 ### User Added to group
-![image](./screenshots/iam-learner-ec2user-add-group.png)
-
-### EC2 Dashboard access
-![image](./screenshots/ec2-dashboard-access.png)
-
-### Denied Terminate action
-![image](./screenshots/ec2-denied-terminate-action.png)
+![User added to group](./User%20Added%20to%20group%20%282%29.png)
 
 ---
 
@@ -173,13 +179,10 @@ Added to: BillingViewGroup
 **Deliverables:**
 
 ### BillingViewGroup & Policy attached
-![image](./screenshots/iam-group-billread-policy.png)
-
-### Billing Dashboard access
-![image](./screenshots/billing-dashboard-access.png)
+![BillingViewGroup and policy attached](./BillingViewGroup%20%26%20Policy%20attached.png)
 
 ### learner-billing cannot manage unrelated services
-![image](./screenshots/billing-user-denied-action.png)
+![learner-billing cannot manage unrelated services](./learner-billing%20user%20cannot%20manage%20unrelated%20AWS%20services.png)
 
 ---
 
@@ -213,16 +216,16 @@ Added to: BillingViewGroup
 **Deliverables:**
 
 ### Custom Policy Created
-![image](./screenshots/custom-s3-read-only-training-policy.png)
+![Custom S3 policy](./Custom%20S3%20Policy.png)
 
 ### Policy Attached to learner-s3 user
-![image](./screenshots/custom-s3-policy-attached-iam-user.png)
+![Policy attached to learner-s3 user](./Policy%20Attached%20to%20learner-s3%20user.png)
 
 ### Allowed action
-![image](./screenshots/s3-custom-policy-allowed-action.png)
+![Allowed action](./Allowed%20action.png)
 
 ### Denied action
-![image](./screenshots/s3-custom-policy-denied-action.png)
+![Denied action](./Allowed%20action%20%282%29.png)
 
 ---
 
@@ -238,16 +241,13 @@ Policy: ReadOnlyAccess
 **Deliverables:**
 
 ### TrainingReadOnlyRole with ReadOnlyAccess
-![image](./screenshots/trainingrole-readaccess.png)
-
-### IAM User Assume Role Policy Attached
-![image](./screenshots/iam-user-assume-role-policy-attached.png)
+![TrainingReadOnlyRole with ReadOnlyAccess](./TrainingReadOnlyRole%20with%20ReadOnlyAccess.png)
 
 ### Switch Role
-![image](./screenshots/switch-role.png)
+![Switch Role](./Switch%20Role.png)
 
 ### Verify Role Access
-![image](./screenshots/verify-role-access.png)
+![Verify Role Access](./Verify%20Role%20Access.png)
 
 ---
 
@@ -278,25 +278,22 @@ AWS Resources (S3, EC2, etc.)
 **Deliverables:**
 
 ### OIDC Provider
-![image](./screenshots/oidc-provider.png)
+![OIDC Provider](./OIDC%20Provider.png)
 
 ### IAM Role (github-oidc-challenge-role)
-![image](./screenshots/oidc-iam-role.png)
+![IAM Role github-oidc-challenge-role](./IAM%20Role%28github-oidc-challenge-role.png)
 
 ### OIDC Trust Policy
-![image](./screenshots/oidc-trust-policy.png)
+![OIDC Trust Policy](./OIDC%20Trust%20Policy.png)
 
 ### GitHub Action Success
-![image](./screenshots/oidc-github-action-success.png)
+![GitHub Action Success](./Github%20Action%20Success.png)
 
 ### STS Assumed Role Output
-![image](./screenshots/oidc-sts-assumed-role.png)
+![STS Assumed Role Output](./STS%20Assumed%20Role%20Output.png)
 
 ### Validate S3 Read Access
-![image](./screenshots/oidc-s3-read-access.png)
-
-### GHA Workflow File
-![image](./screenshots/oidc-workflow-file.png)
+![Validate S3 Read Access](./Validate%20S3%20Read%20Access.png)
 
 ---
 
