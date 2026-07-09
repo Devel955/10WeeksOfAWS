@@ -66,6 +66,36 @@
 ### Budget Alerts
 ![image](./screenshots/budget.png)
 
+Show Image
+
+Where I Got Stuck:
+
+Show Image
+
+Issue: Initially, I couldn't create the Billing Alarm because CloudWatch billing alerts were not enabled and billing metrics were unavailable.
+
+Resolution: I enabled "Receive CloudWatch billing alerts" in Billing Preferences, selected the US East (N. Virginia) (us-east-1) region, and then successfully created the Billing Alarm.
+
+Why should the AWS root user not be used daily?
+
+
+The root user has full access to the entire AWS account.
+Using it every day is risky because one mistake can affect all resources.
+If the root account is hacked, the attacker gets complete control of the AWS account.
+For daily work, we should use IAM users or IAM roles with only the required permissions.
+The root user should be used only for account setup and a few critical administrative tasks.
+MFA should always be enabled on the root account for extra security.
+
+
+Why billing should be monitored from Day 1?
+
+
+Helps avoid unexpected charges.
+Keeps AWS spending under control.
+Sends alerts when the budget limit is reached.
+Helps use AWS resources wisely.
+Makes it easier to stay within the Free Tier.
+
 ---
 
 ## Lab 2 — S3 Read-Only IAM Group and User
