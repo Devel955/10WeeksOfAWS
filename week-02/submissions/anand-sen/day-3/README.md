@@ -95,9 +95,23 @@ An attempted upload failed with `AccessDenied` because the role does not grant `
 
 The EC2 instance was terminated and the S3 bucket and IAM role were removed after the lab.
 
-| EC2 instance terminated | S3 bucket deleted | IAM role deleted |
-| --- | --- | --- |
-| ![No active matching EC2 instance](screenshots/08-cleanup-ec2.png) | ![No matching S3 bucket](screenshots/09-cleanup-s3.png) | ![No matching IAM role](screenshots/10-cleanup-iam-role.png) |
+### EC2 Instance Terminated
+
+The terminated-instance filter returned no matching EC2 instances.
+
+![No active matching EC2 instance](screenshots/08-cleanup-ec2.png)
+
+### S3 Bucket Deleted
+
+Searching for the lab bucket returned no matching S3 buckets.
+
+![No matching S3 bucket](screenshots/09-cleanup-s3.png)
+
+### IAM Role Deleted
+
+Searching for the lab role returned no matching IAM roles.
+
+![No matching IAM role](screenshots/10-cleanup-iam-role.png)
 
 ## What I Learned
 
