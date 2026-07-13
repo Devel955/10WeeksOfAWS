@@ -1,0 +1,69 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="560" viewBox="0 0 1200 560" role="img" aria-labelledby="title desc">
+  <title id="title">EC2 to S3 access using IAM role and AWS STS</title>
+  <desc id="desc">An EC2 instance receives temporary credentials through an instance profile and IAM role, then uses read-only permissions to access an S3 bucket. Write access is denied.</desc>
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#0f172a"/>
+      <stop offset="1" stop-color="#172554"/>
+    </linearGradient>
+    <marker id="arrow" markerWidth="10" markerHeight="10" refX="9" refY="3" orient="auto" markerUnits="strokeWidth">
+      <path d="M0,0 L0,6 L9,3 z" fill="#38bdf8"/>
+    </marker>
+    <filter id="shadow" x="-20%" y="-20%" width="140%" height="140%">
+      <feDropShadow dx="0" dy="8" stdDeviation="8" flood-color="#020617" flood-opacity="0.45"/>
+    </filter>
+  </defs>
+  <rect width="1200" height="560" rx="28" fill="url(#bg)"/>
+  <text x="600" y="58" text-anchor="middle" fill="#f8fafc" font-family="Arial, sans-serif" font-size="30" font-weight="700">Secure EC2-to-S3 Access with IAM Role</text>
+  <text x="600" y="91" text-anchor="middle" fill="#94a3b8" font-family="Arial, sans-serif" font-size="16">No long-term access keys stored on the instance</text>
+
+  <g filter="url(#shadow)">
+    <rect x="55" y="172" width="220" height="190" rx="20" fill="#1e293b" stroke="#f59e0b" stroke-width="3"/>
+    <circle cx="165" cy="223" r="32" fill="#f59e0b"/>
+    <text x="165" y="232" text-anchor="middle" fill="#111827" font-family="Arial, sans-serif" font-size="26" font-weight="700">EC2</text>
+    <text x="165" y="286" text-anchor="middle" fill="#f8fafc" font-family="Arial, sans-serif" font-size="21" font-weight="700">EC2 Instance</text>
+    <text x="165" y="320" text-anchor="middle" fill="#cbd5e1" font-family="Arial, sans-serif" font-size="15">week2-day3-ec2</text>
+  </g>
+
+  <g filter="url(#shadow)">
+    <rect x="355" y="142" width="250" height="250" rx="20" fill="#1e293b" stroke="#a78bfa" stroke-width="3"/>
+    <circle cx="480" cy="200" r="31" fill="#a78bfa"/>
+    <text x="480" y="208" text-anchor="middle" fill="#111827" font-family="Arial, sans-serif" font-size="21" font-weight="700">IAM</text>
+    <text x="480" y="261" text-anchor="middle" fill="#f8fafc" font-family="Arial, sans-serif" font-size="21" font-weight="700">Instance Profile</text>
+    <text x="480" y="294" text-anchor="middle" fill="#cbd5e1" font-family="Arial, sans-serif" font-size="15">Week2Day3EC2S3ReadRole</text>
+    <line x1="390" y1="317" x2="570" y2="317" stroke="#475569"/>
+    <text x="480" y="344" text-anchor="middle" fill="#ddd6fe" font-family="Arial, sans-serif" font-size="14">Trust: ec2.amazonaws.com</text>
+    <text x="480" y="369" text-anchor="middle" fill="#ddd6fe" font-family="Arial, sans-serif" font-size="14">Action: sts:AssumeRole</text>
+  </g>
+
+  <g filter="url(#shadow)">
+    <rect x="685" y="172" width="200" height="190" rx="20" fill="#1e293b" stroke="#38bdf8" stroke-width="3"/>
+    <circle cx="785" cy="223" r="32" fill="#38bdf8"/>
+    <text x="785" y="232" text-anchor="middle" fill="#082f49" font-family="Arial, sans-serif" font-size="24" font-weight="700">STS</text>
+    <text x="785" y="286" text-anchor="middle" fill="#f8fafc" font-family="Arial, sans-serif" font-size="21" font-weight="700">Temporary</text>
+    <text x="785" y="313" text-anchor="middle" fill="#f8fafc" font-family="Arial, sans-serif" font-size="21" font-weight="700">Credentials</text>
+    <text x="785" y="340" text-anchor="middle" fill="#cbd5e1" font-family="Arial, sans-serif" font-size="14">Auto-rotated sessions</text>
+  </g>
+
+  <g filter="url(#shadow)">
+    <rect x="965" y="172" width="180" height="190" rx="20" fill="#1e293b" stroke="#22c55e" stroke-width="3"/>
+    <circle cx="1055" cy="223" r="32" fill="#22c55e"/>
+    <text x="1055" y="232" text-anchor="middle" fill="#052e16" font-family="Arial, sans-serif" font-size="25" font-weight="700">S3</text>
+    <text x="1055" y="286" text-anchor="middle" fill="#f8fafc" font-family="Arial, sans-serif" font-size="21" font-weight="700">S3 Bucket</text>
+    <text x="1055" y="316" text-anchor="middle" fill="#cbd5e1" font-family="Arial, sans-serif" font-size="13">anand-week2-s3-role-</text>
+    <text x="1055" y="337" text-anchor="middle" fill="#cbd5e1" font-family="Arial, sans-serif" font-size="13">lab-955</text>
+  </g>
+
+  <path d="M275 267 H345" fill="none" stroke="#38bdf8" stroke-width="4" marker-end="url(#arrow)"/>
+  <text x="310" y="245" text-anchor="middle" fill="#bae6fd" font-family="Arial, sans-serif" font-size="13">Role attached</text>
+  <path d="M605 267 H675" fill="none" stroke="#38bdf8" stroke-width="4" marker-end="url(#arrow)"/>
+  <text x="640" y="245" text-anchor="middle" fill="#bae6fd" font-family="Arial, sans-serif" font-size="13">Assume role</text>
+  <path d="M885 267 H955" fill="none" stroke="#38bdf8" stroke-width="4" marker-end="url(#arrow)"/>
+  <text x="920" y="245" text-anchor="middle" fill="#bae6fd" font-family="Arial, sans-serif" font-size="13">AWS CLI</text>
+
+  <rect x="235" y="440" width="730" height="73" rx="18" fill="#0f172a" stroke="#334155"/>
+  <circle cx="277" cy="476" r="16" fill="#22c55e"/>
+  <text x="277" y="482" text-anchor="middle" fill="#052e16" font-family="Arial, sans-serif" font-size="17" font-weight="700">✓</text>
+  <text x="307" y="470" fill="#dcfce7" font-family="Arial, sans-serif" font-size="16" font-weight="700">Allowed: s3:ListBucket and s3:GetObject</text>
+  <text x="307" y="494" fill="#cbd5e1" font-family="Arial, sans-serif" font-size="14">Denied by design: s3:PutObject — least-privilege access enforced</text>
+</svg>

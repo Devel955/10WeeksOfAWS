@@ -1,5 +1,9 @@
 # Week 2 - IAM Roles, STS, Organizations, and Identity Center
 
+## Student Submission
+
+- [Anand Sen — Day 3: IAM Roles and AWS STS](submissions/anand-sen/day-3/README.md)
+
 AWS Zero To Hero - CloudAdhar x TrainWithShubham<br>
 Sessions: Jul 11-12, 2026<br>
 Course sessions: Day 3-4<br>
