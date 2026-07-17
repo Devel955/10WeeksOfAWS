@@ -51,11 +51,25 @@ The SCP was attached to the `Dev-Env` OU. Any account inside this OU inherits th
 
 ---
 
-## Part 1 - Centralized Account Access
+## Part 1 - Create AWS Organization Structure
+
+Created the AWS Organizations hierarchy with a `Root` account, a `Dev-Env` organizational unit, and the development account under the correct OU.
+
+![AWS Organizations overview showing Root, Dev-Env OU, and member accounts](./screenshots/01-aws-organizations-overview.png)
+
+**Result**
+
+- Created and reviewed the AWS Organizations hierarchy.
+- Organized the development account under the `Dev-Env` OU.
+- Kept the management account separate from the member account.
+
+---
+
+## Part 2 - Centralized Account Access
 
 Configured AWS IAM Identity Center to provide access to the AWS accounts through the AWS access portal.
 
-![AWS access portal showing available AWS accounts and AdministratorAccess](./screenshots/01-aws-access-portal.png)
+![AWS access portal showing available AWS accounts and AdministratorAccess](./screenshots/02-aws-access-portal.png)
 
 **Result**
 
@@ -65,11 +79,11 @@ Configured AWS IAM Identity Center to provide access to the AWS accounts through
 
 ---
 
-## Part 2 - Attach SCP to the Dev-Env OU
+## Part 3 - Attach SCP to the Dev-Env OU
 
 Created the `Dev-Env` organizational unit and attached the `Deny-S3-Bucket-Creation` Service Control Policy directly to it.
 
-![Dev-Env OU with the Deny-S3-Bucket-Creation SCP attached](./screenshots/02-dev-env-scp-attached.png)
+![Dev-Env OU with the Deny-S3-Bucket-Creation SCP attached](./screenshots/03-dev-env-scp-attached.png)
 
 **Result**
 
@@ -79,7 +93,7 @@ Created the `Dev-Env` organizational unit and attached the `Deny-S3-Bucket-Creat
 
 ---
 
-## Part 3 - Permission Evaluation Flow
+## Part 4 - Permission Evaluation Flow
 
 AWS evaluates permissions in layers. IAM Identity Center provides the permission set and role, while the SCP sets the maximum permissions that accounts in the OU can use.
 
