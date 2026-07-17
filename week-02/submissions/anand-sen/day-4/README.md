@@ -1,4 +1,4 @@
-# Week 2 - Day 4: AWS Organizations and Service Control Policies
+# Week 2 - Day 4: Organizations, Identity Center, and SCPs
 
 ## Name
 
@@ -6,136 +6,154 @@ Anand Sen
 
 ## Tasks Completed
 
-- [x] Studied AWS Organizations, organizational units (OUs), and Service Control Policies (SCPs)
-- [x] Created and organized AWS accounts for separate environments
-- [x] Used IAM Identity Center for account access
-- [x] Attached an SCP to the Dev-Env OU
-- [x] Verified that an explicit SCP deny overrides an IAM allow
+- [x] Studied AWS Organizations, organizational units, and Service Control Policies
+- [x] Created a management account and development member account structure
+- [x] Created the `Dev-Env` organizational unit
+- [x] Configured AWS IAM Identity Center access
+- [x] Attached `Deny-S3-Bucket-Creation` SCP to the `Dev-Env` OU
 - [x] Added screenshots as proof of the implementation
 
 ---
 
-## Architecture Diagram
+# Architecture Diagram
 
-![AWS Organizations structure and SCP evaluation flow](./screenshots/00-scp-architecture.png)
+![AWS Organizations SCP implementation and permission evaluation flow](./screenshots/00-scp-architecture.png)
 
 ---
 
 ## Topics Practiced
 
-- AWS Organizations
-- Root, accounts, and organizational units
+- AWS Organizations account and Organizational Unit (OU) management
 - AWS IAM Identity Center
 - Permission sets and AWSReservedSSO roles
 - Service Control Policies (SCPs)
-- Explicit deny evaluation
 - AWS STS temporary credentials
-- Multi-account governance
+- Amazon S3 permissions and explicit deny evaluation
+- Multi-account governance and centralized billing
 
 ---
 
-## What I Built
+# What I Built
 
-I organized AWS accounts into separate environments and used a Service Control Policy to centrally control permissions for the Dev environment.
+I created an AWS Organizations environment to understand how centralized governance works with Service Control Policies.
+
+- Organized accounts under AWS Organizations using the `Root` and `Dev-Env` OU.
+- Used AWS IAM Identity Center to access both AWS accounts with `AdministratorAccess`.
+- Attached the `Deny-S3-Bucket-Creation` SCP directly to the `Dev-Env` OU.
+- Confirmed that member accounts inside `Dev-Env` inherit the SCP.
+- Documented how an SCP explicit deny overrides an IAM allow.
 
 | Resource | Value |
 | --- | --- |
-| Organization | AWS Organizations |
 | Organizational unit | `Dev-Env` |
+| Member account | `CloudAdhar-Dev` |
+| Management account | `Abhishek kumar` |
 | SCP | `Deny-S3-Bucket-Creation` |
 | Restricted action | `s3:CreateBucket` |
-| Access method | IAM Identity Center |
-| Permission set | `CloudAdhar-Admin` |
-
-The SCP was attached to the `Dev-Env` OU. Any account inside this OU inherits the policy, so bucket creation is denied even when an IAM role otherwise allows the action.
+| Access method | AWS IAM Identity Center |
 
 ---
 
-## Part 1 - Create AWS Organization Structure
+# Part 1 - Review AWS Organization
 
-Created the AWS Organizations hierarchy with a `Root` account, a `Dev-Env` organizational unit, and the development account under the correct OU.
+Verified the AWS Organizations hierarchy, including the Root, `Dev-Env` OU, management account, and development member account.
 
-![AWS Organizations overview showing Root, Dev-Env OU, and member accounts](./screenshots/01-aws-organizations-overview.png)
+## AWS Organizations Overview
+
+![AWS Organizations hierarchy showing Root, Dev-Env OU, and member accounts](./screenshots/01-aws-organizations-overview.png)
+
+## Dev-Env SCP Attached
+
+![Dev-Env organizational unit with Deny-S3-Bucket-Creation SCP attached](./screenshots/03-dev-env-scp-attached.png)
 
 **Result**
 
-- Created and reviewed the AWS Organizations hierarchy.
-- Organized the development account under the `Dev-Env` OU.
-- Kept the management account separate from the member account.
+- Confirmed that the `Dev-Env` OU exists under the organization Root.
+- Confirmed that the development account is organized under the correct OU.
+- Verified that `Deny-S3-Bucket-Creation` is attached to `Dev-Env`.
 
 ---
 
-## Part 2 - Centralized Account Access
+# Part 2 - Verify IAM Identity Center Access
 
-Configured AWS IAM Identity Center to provide access to the AWS accounts through the AWS access portal.
+Signed in through the AWS access portal and verified access to the assigned AWS accounts and permission set.
 
-![AWS access portal showing available AWS accounts and AdministratorAccess](./screenshots/02-aws-access-portal.png)
+## AWS Access Portal
+
+![AWS access portal showing AWS accounts and AdministratorAccess](./screenshots/02-aws-access-portal.png)
 
 **Result**
 
-- Access to AWS accounts is managed from one place.
-- The required account and permission set are visible in the AWS access portal.
-- Users can sign in without creating separate IAM users in every account.
+- Verified access to the management and development accounts.
+- Verified the available `AdministratorAccess` permission set.
+- Used centralized sign-in instead of creating separate IAM users in each account.
 
 ---
 
-## Part 3 - Attach SCP to the Dev-Env OU
+# Part 3 - Understand SCP Inheritance
 
-Created the `Dev-Env` organizational unit and attached the `Deny-S3-Bucket-Creation` Service Control Policy directly to it.
+The SCP applies according to the account location in AWS Organizations.
 
-![Dev-Env OU with the Deny-S3-Bucket-Creation SCP attached](./screenshots/03-dev-env-scp-attached.png)
+```text
+Account outside Dev-Env OU  -> SCP is not inherited
+Account moved into Dev-Env OU -> SCP is inherited
+SCP explicit deny            -> action fails with AccessDenied
+```
 
-**Result**
-
-- The `Dev-Env` OU contains the development account.
-- The SCP is attached directly to the OU.
-- All accounts in the OU inherit the bucket-creation restriction.
+In this lab, the `Deny-S3-Bucket-Creation` policy acts as a guardrail for accounts in the `Dev-Env` OU. It denies `s3:CreateBucket` even if the assigned IAM role allows the action.
 
 ---
 
-## Part 4 - Permission Evaluation Flow
+# Part 4 - Permission Evaluation Flow
 
-AWS evaluates permissions in layers. IAM Identity Center provides the permission set and role, while the SCP sets the maximum permissions that accounts in the OU can use.
+AWS evaluates identity permissions and organization-level restrictions together.
 
 ```text
 IAM Identity Center permission set
             |
             v
-AWSReservedSSO role allows an action
+AWSReservedSSO role permits an action
             |
             v
-SCP checks organization-level guardrails
+Service Control Policy evaluates organization guardrails
             |
             v
 Explicit SCP deny -> AccessDenied
 ```
 
-**Key takeaway:** An explicit deny in an SCP always overrides an allow from an IAM policy. In this lab, `s3:CreateBucket` is denied for accounts under the `Dev-Env` OU.
+**Key takeaway:** SCPs do not grant permissions. They define the maximum permissions available to accounts in an organization. An explicit deny in an SCP always overrides an IAM allow.
 
 ---
 
-## What I Learned
+# What I Learned
 
-- AWS Organizations helps manage multiple AWS accounts from a central place.
-- Organizational units make it easier to apply rules to groups of accounts.
-- SCPs are guardrails; they define the maximum permissions available in member accounts.
-- SCPs do not grant permissions by themselves.
-- IAM Identity Center simplifies access management across multiple accounts.
-- Explicit deny always wins during AWS permission evaluation.
+- AWS Organizations makes multi-account management easier and more secure.
+- Organizational units allow policies to be applied to groups of accounts.
+- IAM Identity Center provides centralized, temporary access to multiple AWS accounts.
+- SCPs are organization-level guardrails, not IAM permission grants.
+- The account must be inside the target OU to inherit the attached SCP.
+- Explicit deny wins during AWS permission evaluation.
+
+---
+
+## Where I Got Stuck
+
+At first, it was confusing why an administrator role could still be blocked from creating an S3 bucket. I learned that IAM policies allow permissions inside an account, while SCPs set a higher organization-level boundary. Once the development account was placed inside the `Dev-Env` OU, the SCP restriction applied to it.
 
 ---
 
 ## Security Note
 
-No access keys, secret keys, account IDs, or other credentials are included in this submission.
+No access keys, secret keys, account IDs, or session tokens are included in this submission.
 
 ---
 
 ## Cleanup
 
-- Reviewed the accounts and OUs created for the lab.
-- Kept the SCP attached only where the guardrail is required.
-- Confirmed that the policy scope is limited to the `Dev-Env` OU.
+- Reviewed the AWS Organizations hierarchy and SCP scope.
+- Kept the SCP limited to the `Dev-Env` OU.
+- Removed test resources that were not needed after the lab.
+- Verified that no unnecessary billable resources remained.
 
 ---
 
