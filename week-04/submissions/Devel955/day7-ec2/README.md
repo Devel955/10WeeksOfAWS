@@ -80,33 +80,31 @@ Successfully completed the manual Golden AMI creation and the automated EC2 Imag
 
 ### 1. Builder EC2 Configuration
 
-![01_Builder_EC2_Configuration](screenshots/01_Builder_EC2_Configuration.png)
+![Builder EC2 Configuration](screenshots/Builder%20EC2%20Configuration.png)
 
 ---
 
 ### 2. NGINX Bootstrap Validation
 
-![02_NGINX_Bootstrap_Validation](screenshots/02_NGINX_Bootstrap_Validation.png)
+![NGINX Bootstrap Validation](screenshots/NGINX%20Bootstrap%20Validation.png)
 
 ---
 
 ### 3. IMDSv2 Validation
 
-![03_IMDSv2_Validation](screenshots/03_IMDSv2_Validation.png)
+![IMDSv2 Validation](screenshots/IMDSv2%20Validation.png)
 
 ---
 
 ### 4. Golden AMI v1 Available
 
-![04_Golden_AMI_v1_Available](screenshots/04_Golden_AMI_v1_Available.png)
+![Golden AMI v1 Available](screenshots/Golden%20AMI%20v1%20Available.png)
 
 ---
 
 ### 5. Golden AMI Validation on Test EC2
 
-![05_Golden_AMI_Validation_Test_EC2](screenshots/05_Golden_AMI_Validation_Test_EC2.png)
-
----
+![Golden AMI Validation on Test EC2](screenshots/Golden%20AMI%20Validation%20on%20Test%20EC2.png)
 
 # Part 2: EC2 Image Builder Automation
 
@@ -124,56 +122,55 @@ Successfully completed the manual Golden AMI creation and the automated EC2 Imag
 
 ### 6. Image Builder Build and Test Components
 
-![06_Image_Builder_Components](screenshots/06_Image_Builder_Components.png)
+![Image Builder Build and Test Components](screenshots/Image%20Builder%20Build%20and%20Test%20Components.png)
 
 ---
 
 ### 7. Image Recipe
 
-![07_Image_Recipe](screenshots/07_Image_Recipe.png)
+![Image Recipe](screenshots/Image%20Recipe.png)
 
 ---
 
 ### 8. Infrastructure Configuration
 
-![08_Infrastructure_Configuration](screenshots/08_Infrastructure_Configuration.png)
+![Infrastructure Configuration](screenshots/Infrastructure%20Configuration.png)
 
 ---
 
 ### 9. Distribution Configuration
 
-![09_Distribution_Configuration](screenshots/09_Distribution_Configuration.png)
+![Distribution Configuration](screenshots/Distribution%20Configuration.png)
 
 ---
 
 ### 10. Image Pipeline
 
-![10_Image_Pipeline](screenshots/10_Image_Pipeline.png)
+![Image Pipeline](screenshots/Image%20Pipeline.png)
 
 ---
 
 ### 11. Build Workflow Completed
 
-![11_Build_Workflow_Completed](screenshots/11_Build_Workflow_Completed.png)
+![Build Workflow Completed](screenshots/Build%20Workflow%20Completed.png)
 
 ---
 
 ### 12. Test Workflow Completed
 
-![12_Test_Workflow_Completed](screenshots/12_Test_Workflow_Completed.png)
+![Test Workflow Completed](screenshots/Test%20Workflow%20Completed.png)
 
 ---
 
 ### 13. Output AMI Available
 
-![13_Output_AMI_Available](screenshots/13_Output_AMI_Available.png)
+![Output AMI Available](screenshots/Output%20AMI%20Available.png)
 
 ---
 
 ### 14. Image Builder AMI Validation on Test EC2
 
-![14_Image_Builder_AMI_Validation_Test_EC2](screenshots/14_Image_Builder_AMI_Validation_Test_EC2.png)
-
+![Image Builder AMI Validation on Test EC2](screenshots/Image%20Builder%20AMI%20Validation%20on%20Test%20EC2.png)
 ---
 
 ## Where I Got Stuck
