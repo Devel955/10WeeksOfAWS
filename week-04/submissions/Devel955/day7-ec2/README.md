@@ -14,7 +14,7 @@ Anand Sen
 
 **`Manual AMI Creation Architecture`**
 
-![Manual AMI Creation Architecture](diagrams/manual_ami_creation_architecture.png)
+![Manual AMI Creation Architecture](diagrams/manual_ami_creation_architecture_edited.gif)
 
 ### Architecture Overview
 
@@ -29,7 +29,7 @@ Anand Sen
 
 **`Image Builder Automated Golden AMI Pipeline Architecture`**
 
-![Image Builder Automated Golden AMI Pipeline Architecture](diagrams/ec2-image-builder-pipeline-architecture.png)
+![Image Builder Automated Golden AMI Pipeline Architecture](diagrams/ec2-image-builder-pipeline-architecture_edited.gif)
 
 ### Architecture Overview
 
