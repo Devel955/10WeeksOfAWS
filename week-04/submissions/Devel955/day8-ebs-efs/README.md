@@ -78,33 +78,32 @@ Completed hands-on work covering EBS persistence, snapshot-based disaster recove
 
 ### 1. Storage EC2 Running
 
-![01_Storage_EC2](screenshots/01_Storage_EC2.png)
+![Storage EC2 Running](screenshots/Storage%20EC2%20Running.png)
 
 ---
 
 ### 2. gp3 Volume Attached
 
-![02_gp3_Volume_Attached](screenshots/02_gp3_Volume_Attached.png)
+![gp3 Volume Attached](screenshots/gp3%20Volume%20Attached.png)
 
 ---
 
 ### 3. XFS Filesystem Mounted using UUID
 
-![03_XFS_UUID_Mount](screenshots/03_XFS_UUID_Mount.png)
+![XFS Filesystem Mounted using UUID](screenshots/XFS%20Filesystem%20Mounted%20using%20UUID.png)
 
 ---
 
 ### 4. Data Persistence Validation
 
-![04_EBS_Persistence_Validation](screenshots/04_EBS_Persistence_Validation.png)
+![Data Persistence Validation](screenshots/Data%20Persistence%20Validation.png)
 
 ---
 
 ### 5. Volume Expansion (2 GiB → 4 GiB)
 
-![05_EBS_Volume_Expansion](screenshots/05_EBS_Volume_Expansion.png)
+![Volume Expansion](screenshots/Volume%20Expansion%20(2%20GiB%20%E2%86%92%204%20GiB).png)
 
----
 
 # Part 2: Snapshot & Disaster Recovery
 
@@ -118,19 +117,19 @@ Completed hands-on work covering EBS persistence, snapshot-based disaster recove
 
 ### 6. Snapshot Completed
 
-![06_Snapshot_Completed](screenshots/06_Snapshot_Completed.png)
+![Snapshot Completed](screenshots/Snapshot%20Completed.png)
 
 ---
 
 ### 7. Restored Volume Validation
 
-![07_Restored_Volume_Validation](screenshots/07_Restored_Volume_Validation.png)
+![Restored Volume Validation](screenshots/Restored%20Volume%20Validation.png)
 
 ---
 
 ### 8. Cross-Region Snapshot Copy & Encryption Validation
 
-![08_Cross_Region_Snapshot_Copy_Encryption_Validation](screenshots/08_Cross_Region_Snapshot_Copy_Encryption_Validation.png)
+![Cross-Region Snapshot Copy & Encryption Validation](screenshots/Cross-Region%20Snapshot%20Copy%20%26%20Encryption%20Validation.png)
 
 ---
 
@@ -144,7 +143,7 @@ Completed hands-on work covering EBS persistence, snapshot-based disaster recove
 
 ### 9. Data Lifecycle Manager Policy
 
-![09_DLM_Policy](screenshots/09_DLM_Policy.png)
+![Data Lifecycle Manager Policy](screenshots/Data%20Lifecycle%20Manager%20Policy.png)
 
 ---
 
@@ -160,9 +159,10 @@ Completed hands-on work covering EBS persistence, snapshot-based disaster recove
 
 ### 10. Placement Groups
 
-![10_Placement_Groups](screenshots/10_Placement_Groups.png)
+![Placement Groups](screenshots/Placement%20Groups.png)
 
 ---
+
 
 # Part 5: Amazon EFS Shared Storage
 
@@ -177,8 +177,7 @@ Completed hands-on work covering EBS persistence, snapshot-based disaster recove
 
 ### 11. Amazon EFS File System
 
-![11_EFS_File_System](screenshots/11_EFS_File_System.png)
-
+![Amazon EFS File System](screenshots/Amazon%20EFS%20File%20System.png)
 ---
 
 ### 12. Client 1 Mounted Amazon EFS
