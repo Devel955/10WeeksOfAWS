@@ -55,7 +55,7 @@ Built out an ALB + Auto Scaling Group setup end to end. Confirmed traffic was lo
 
 Set up the Launch Template `cloudadhar-day9-lt` on Amazon Linux 2023, `t3.micro`, with IMDSv2 enforced, an encrypted gp3 root volume, detailed monitoring enabled, and User Data to install and configure NGINX automatically.
 
-![01_Launch_Template_Configuration](screenshots/01_Launch_Template_Configuration.png)
+![Launch Template Configuration](screenshots/Launch%20Template%20Configuration.png)
 
 ---
 
@@ -63,7 +63,7 @@ Set up the Launch Template `cloudadhar-day9-lt` on Amazon Linux 2023, `t3.micro`
 
 Configured the Target Group `cloudadhar-day9-tg` with HTTP health checks pointed at `/health.html` to track instance health.
 
-![02_Target_Group_Configuration](screenshots/02_Target_Group_Configuration.png)
+![Target Group Configuration](screenshots/Target%20Group%20Configuration.png)
 
 ---
 
@@ -71,7 +71,7 @@ Configured the Target Group `cloudadhar-day9-tg` with HTTP health checks pointed
 
 Stood up the internet-facing ALB `cloudadhar-day9-alb` with an HTTP listener forwarding requests to the Target Group across both AZs.
 
-![03_Application_Load_Balancer](screenshots/03_Application_Load_Balancer.png)
+![Application Load Balancer](screenshots/Application%20Load%20Balancer.png)
 
 ---
 
@@ -79,7 +79,7 @@ Stood up the internet-facing ALB `cloudadhar-day9-alb` with an HTTP listener for
 
 Created the ASG `cloudadhar-day9-asg` from the Launch Template, with `minimum capacity of 1`, `desired capacity of 1`, and `maximum capacity of 2`.
 
-![04_Auto_Scaling_Group](screenshots/04_Auto_Scaling_Group.png)
+![Auto Scaling Group](screenshots/Auto%20Scaling%20Group.png)
 
 ---
 
@@ -87,7 +87,7 @@ Created the ASG `cloudadhar-day9-asg` from the Launch Template, with `minimum ca
 
 Confirmed the EC2 instance registered with the Target Group and passed ALB health checks, reaching the Healthy state.
 
-![05_Healthy_Target_Registration](screenshots/05_Healthy_Target_Registration.png)
+![Healthy Target Registration](screenshots/Healthy%20Target%20Registration.png)
 
 ---
 
@@ -95,7 +95,7 @@ Confirmed the EC2 instance registered with the Target Group and passed ALB healt
 
 Verified the ALB correctly routed HTTP requests through to the healthy EC2 instance running the NGINX app.
 
-![06_ALB_Validation](screenshots/06_ALB_Validation.png)
+![ALB Validation](screenshots/ALB%20Validation.png)
 
 ---
 
@@ -103,7 +103,7 @@ Verified the ALB correctly routed HTTP requests through to the healthy EC2 insta
 
 Set up the Target Tracking policy `cloudadhar-day9-cpu50-policy` to keep the ASG's average `CPU utilization around 50%`.
 
-![07_Target_Tracking_Scaling_Policy](screenshots/07_Target_Tracking_Scaling_Policy.png)
+![Target Tracking Scaling Policy](screenshots/Target%20Tracking%20Scaling%20Policy.png)
 
 ---
 
@@ -111,7 +111,7 @@ Set up the Target Tracking policy `cloudadhar-day9-cpu50-policy` to keep the ASG
 
 Loaded the CPU using **stress-ng** and confirmed the CloudWatch High CPU alarm flipped to **ALARM**, kicking off the scale-out process.
 
-![08_High_CPU_Alarm_Triggered](screenshots/08_High_CPU_Alarm_Triggered.png)
+![High CPU Alarm Triggered](screenshots/High%20CPU%20Alarm%20Triggered.png)
 
 ---
 
@@ -119,7 +119,7 @@ Loaded the CPU using **stress-ng** and confirmed the CloudWatch High CPU alarm f
 
 Verified the ASG automatically raised `desired capacity from 1 to 2` once the Target Tracking policy triggered.
 
-![09_Scale_Out_Activity](screenshots/09_Scale_Out_Activity.png)
+![Scale-Out Activity](screenshots/Scale-Out%20Activity.png)
 
 ---
 
@@ -127,7 +127,7 @@ Verified the ASG automatically raised `desired capacity from 1 to 2` once the Ta
 
 Confirmed both EC2 instances were up, registered with the Target Group, and reporting Healthy behind the ALB.
 
-![10_Two_Healthy_EC2_Instances](screenshots/10_Two_Healthy_EC2_Instances.png)
+![Two Healthy EC2 Instances](screenshots/Two%20Healthy%20EC2%20Instances.png)
 
 ---
 
@@ -135,7 +135,7 @@ Confirmed both EC2 instances were up, registered with the Target Group, and repo
 
 Sent repeated requests to the ALB and confirmed traffic was being distributed across both healthy instances.
 
-![11_Load_Balancer_Serving_Multiple_Instances](screenshots/11_Load_Balancer_Serving_Multiple_Instances.png)
+![Two Healthy EC2 Instances](screenshots/Two%20Healthy%20EC2%20Instances.png)
 
 ---
 
@@ -143,9 +143,9 @@ Sent repeated requests to the ALB and confirmed traffic was being distributed ac
 
 Removed the CPU workload and confirmed the Target Tracking policy scaled `desired capacity back down from 2 to 1` once `average CPU dropped below the 50% target`.
 
-![12.1_Low_CPU_Alarm_Triggered](screenshots/12.1_Low_CPU_Alarm_Triggered.png)
+![Scale-In Activity](screenshots/Scale-In%20Activity.png)
 
-![12.2_Scale_In_Activity](screenshots/12.2_Scale_In_Activity.png)
+![Scale_In_Activity](screenshots/12.2_Scale_In_Activity.png)
 
 ---
 
@@ -153,7 +153,7 @@ Removed the CPU workload and confirmed the Target Tracking policy scaled `desire
 
 Simulated a failure by stopping the NGINX service on an instance and confirmed the Target Group marked it Unhealthy after the configured health check threshold.
 
-![13_Unhealthy_Target_Detected](screenshots/13_Unhealthy_Target_Detected.png)
+![Unhealthy Target Detected](screenshots/Unhealthy%20Target%20Detected.png)
 
 ---
 
@@ -161,7 +161,7 @@ Simulated a failure by stopping the NGINX service on an instance and confirmed t
 
 Verified the ASG automatically terminated the unhealthy instance and launched a fresh one to maintain `desired capacity of 1`.
 
-![14_Auto_Scaling_Replacement](screenshots/14_Auto_Scaling_Replacement.png)
+![Auto Scaling Replacement](screenshots/Auto%20Scaling%20Replacement.png)
 
 ---
 
