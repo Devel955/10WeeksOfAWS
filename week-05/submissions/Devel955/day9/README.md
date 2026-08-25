@@ -12,7 +12,7 @@ Anand Sen
 
 ## Architecture
 
-![ALB-ASG Architecture](diagram/alb-asg-architecture.gif)
+![ALB-ASG Architecture](diagram/alb-asg-architecture-updated-v2.gif)
 
 ## Architecture Overview
 
